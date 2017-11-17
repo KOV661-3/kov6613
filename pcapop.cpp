@@ -17,12 +17,12 @@ Packet::Packet()
     heders.caplen=0;
     heders.len=0;
 
-    qDebug() << "Constructor started!";
+
 }
 Packet::~Packet()
 {
 
-    qDebug() << "DEConstructor started!";
+
 }
 Packet::Packet(const Packet &p)
 {
@@ -84,8 +84,11 @@ void Pcapop::Fopene()
     qDebug() << fName;
     if ( fName == "" )
         return;
-    const char *cName = fName.toStdString().c_str();
-    pcap_t *GOD=pcap_open_offline(cName,error);
+    pcap_t *GOD=pcap_open_offline(fName.toStdString().c_str(),error);
+    if (GOD == NULL) {
+          qDebug() << error ;
+            return ;
+      }
     int res;
     int tempbit=40;
     file.read((char *)&pacdata.filehd,24);
@@ -94,7 +97,7 @@ void Pcapop::Fopene()
         Packet temp;
         QByteArray data1;
         pcaprec_hdr_s tempH;
-        temp.getheders();
+
         if(res == 0)
             continue;
         t++;
@@ -145,24 +148,27 @@ void Pcapop::Fopene()
 
 void Pcapop::PushContent()
 {
-//    QString trys;
-//    QString num =ui->lineEdit_4->text();
-//    qDebug()<<num;
-//    int numb=num.toInt()-1;
-//    num.prepend("Pacet №  ");
-//    ui->textEdit->append(num);
-//    num.clear();
-//    QByteArray* temp=pacdata.packets[numb].getdata();
-//    num.append(temp->toHex());
-//    qint32* temp2=pacdata.packets[numb].getLen();
-//    QStandardItemModel *model = new QStandardItemModel(temp2/2,16,this);
-//    for(int i=0,j=0;i<*temp2*2;i++,j++)
-//    {
-//        if(i%2==0)
-//        {trys[j]=' ';
-//            j++;
-//        }
-//        trys[j]=num[i];
-//    }
-//    ui->textEdit->append(trys);
+    int t=0;
+
+    QString num =ui->lineEdit_4->text();
+    qDebug()<<num;
+    int numb=num.toInt()-1;
+    num.clear();
+    QByteArray* temp=pacdata.packets[numb].getdata();
+    num.append(temp->toHex());
+    qint32* temp2=pacdata.packets[numb].getLen();
+    QStandardItem *item;
+    QStandardItemModel *model = new QStandardItemModel(t,16,this);
+    for(int i=0,j=0,y=0;i<*temp2;i=i+2,j++)
+    {
+        if(j==16)
+        {
+            j=0;
+            y++;
+        }
+        item = new QStandardItem(QString(num.mid(i,2)));
+        model->setItem(y, j, item);
+
+    }
+    ui->tableView_2->setModel(model);
 }

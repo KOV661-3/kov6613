@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>473</height>
+    <width>831</width>
+    <height>401</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,10 +96,10 @@
    <widget class="QPushButton" name="push_Exit">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>402</y>
+      <x>770</x>
+      <y>330</y>
       <width>51</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -147,10 +147,22 @@
      <rect>
       <x>380</x>
       <y>10</y>
-      <width>331</width>
+      <width>441</width>
       <height>291</height>
      </rect>
     </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>25</number>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>26</number>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>25</number>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>25</number>
+    </attribute>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -158,7 +170,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>720</width>
+     <width>831</width>
      <height>21</height>
     </rect>
    </property>
