@@ -159,7 +159,7 @@ void Pcapop::PushContent()
     qint32* temp2=pacdata.packets[numb].getLen();
     QStandardItem *item;
     QStandardItemModel *model = new QStandardItemModel(t,16,this);
-    for(int i=0,j=0,y=0;i<*temp2;i=i+2,j++)
+    for(int i=0,j=0,y=0;i<*temp2*2;i=i+2,j++)
     {
         if(j==16)
         {
